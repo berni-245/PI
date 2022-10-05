@@ -19,7 +19,7 @@ leerNumero(int numFinal[]){
         if(strlen(numero) != NUM_CANT)
             coerencia = false;
 
-        for(i=0;isdigit(numero[i]) && i<'\0';i++){
+        for(i=0;isdigit(numero[i]) && numero[i]!='\0';i++){
             numFinal[i] = numero[i]-'0';
         }
         if(i == NUM_CANT)
