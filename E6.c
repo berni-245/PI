@@ -45,20 +45,6 @@ int main(){
     return  0;
 }
 
-
-/* int
-main(){
-    int respUser[NUM_CANT];
-    int i;
-    leerNumero(respUser);
-
-    for(i=0;i<NUM_CANT;i++){
-        printf("%d ",respUser[i]);
-    }
-    return 0;
-}
- */
-
 void
 generaAleatorio(int num[]){
     int i,j, aux;
