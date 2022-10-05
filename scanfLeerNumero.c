@@ -27,3 +27,5 @@ leerNumero(int numFinal[]){
 
     }while(coerencia == false && cant != 1);
 }
+
+//conclusión: los scand son raros
