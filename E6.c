@@ -4,8 +4,8 @@
 #include <math.h>
 #include "../getnum.h"
 #include "../random.h"
-#define NUM_CANT 3
-#define DIM_CANDIDATOS 10
+#define NUM_CANT 3 //no puede ser mayor que 9
+#define DIM_CANDIDATOS 9
 
 void generaAleatorio(int num[]); 
 int elegirNivel(); //front
@@ -48,7 +48,7 @@ int main(){
 void
 generaAleatorio(int num[]){
     int i,j, aux;
-    int candidatos[] = {0,1,2,3,4,5,6,7,8,9};
+    int candidatos[] = {1,2,3,4,5,6,7,8,9};
     randomize();
 
     for(i=0;i<DIM_CANDIDATOS;i++){
@@ -79,7 +79,7 @@ leerNumero(int numeroFinal[]){
     int divisor = max/10;
 
     do{
-        resp = getint("Ingrese un numero de %d cifras (menos cifras = rellena con 0): ",NUM_CANT);
+        resp = getint("Ingrese un numero de %d cifras con cifras entre 1-9 (menos cifras = rellena con 0): ",NUM_CANT);
         if(resp >= 0 && resp < max)
             flag = true;
     }while(flag == false);
@@ -141,3 +141,8 @@ cantidadRegular(const int resp[], const int respUser[]){
 
     return count;
 }
+
+/*
+-se puede desordnar de una mejor forma, pdf en escritorio
+-se puede juntar todo en el coincide numero, el contar bien, regular, y si son NUM_CANT veces bien entonces son acerto
+*/
