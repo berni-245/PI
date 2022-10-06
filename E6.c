@@ -144,5 +144,5 @@ cantidadRegular(const int resp[], const int respUser[]){
 
 /*
 -se puede desordnar de una mejor forma
--se puede juntar todo en el coincide numero, el contar bien, regular, y si son NUM_CANT veces bien entonces son acerto
+-se puede juntar todo en el coincideNumero, el cantidadBien, cantidadRegular, y si son NUM_CANT veces bien entonces el usuario acertó
 */
