@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <unistd.h>
 #include "../random.h"
 #define CANT_BOLILLAS_INI 90
 #define PLAYERS 2
@@ -36,7 +37,7 @@ main(){
 
     for(i = 1; i <= PLAYERS; i++){
         if(check & i)
-            printf("El jugador %d hizo bingo\n", i);
+            printf("+++ El jugador %d hizo bingo\n", i);
     }
 
     return 0;    
@@ -70,7 +71,7 @@ jugar(int bolillero[], TipoCarton jugador1, TipoCarton jugador2){
     2 -> 1bitEnOtroLado -> gana jugador 2
     3 -> 1bitEnAmbosLados -> gana jugador 1 y 2
     */
-    int i, bolilla, ganador = 0; 
+    int bolilla, ganador = 0; 
     int restantes = CANT_BOLILLAS_INI;
     int lineasJug1 = 0, lineasJug2 = 0, firstLine = 0;
 
@@ -81,6 +82,9 @@ jugar(int bolillero[], TipoCarton jugador1, TipoCarton jugador2){
         printf("Jugador 2:\n");
         imprimirCarton(jugador2);
 
+        puts("--------------------------\n");
+        sleep(1);
+
         bolilla = sacarBolilla(bolillero, &restantes);
         printf("Bolilla actual: %d\n",bolilla);
 
@@ -88,8 +92,8 @@ jugar(int bolillero[], TipoCarton jugador1, TipoCarton jugador2){
         lineasJug2 = controlarCarton(jugador2, bolilla);
 
         if(!firstLine && (lineasJug1 > 0 || lineasJug2 > 0)){
-            printf("%s",(lineasJug1>0?"El jugador 1 hizo linea!\n":""));
-            printf("%s",(lineasJug2>0?"El jugador 2 hizo linea!\n":""));
+            printf("%s",(lineasJug1>0?"+++ El jugador 1 hizo linea!\n":""));
+            printf("%s",(lineasJug2>0?"+++ El jugador 2 hizo linea!\n":""));
 
             firstLine = 1;
         }
@@ -119,7 +123,7 @@ sacarBolilla(int bolillero[], int * cantBolillas){
     */
 
     (*cantBolillas)--; 
-    i = randint(0, *cantBolillas); 
+    i = randInt(0, *cantBolillas); 
 
     bolilla = bolillero[i]; 
     bolillero[i] = bolillero[*cantBolillas]; 
@@ -176,5 +180,11 @@ buscarBolilla(TipoCarton carton, int bolilla){
 
 int
 controlarLineas(TipoLinea linea){
+    int i;
+    int aciertos=0;
+    for(i=0; i<COLUM; i++){
+        aciertos += (linea[i] == 0);
+    }
     
+    return (aciertos == COLUM);
 }
