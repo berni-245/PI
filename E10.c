@@ -97,6 +97,7 @@ imprimirPalabra(char palabra[], short marcas[]){
         putchar(' ');
     }
     putchar('\n');
+    putchar('\n');
 }
 
 int 
