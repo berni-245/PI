@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include "../random.h"
 #define LONG_LETRAS 10
-#define INTENTOS_INI 10
+#define INTENTOS_INI 6
 
 void selecPalabra(char candidatos[][LONG_LETRAS+1], char palabra[]);
 char ingresarLetra();
@@ -14,7 +14,7 @@ int palabraCompleta(char palabra[], short marcas[]);
 
 int
 main(){
-    char candidatos[][LONG_LETRAS+1] = {"cuatrienio","despreciar","explotador","futbolista","interrogar","justiciero","relevancia","septiembre","voluntario"};
+    char candidatos[][LONG_LETRAS+1] = {"test","despreciar","explotador","futbolista","interrogar","justiciero","relevancia","septiembre","voluntario"};
     char palabra[LONG_LETRAS+1];
     short marcas[LONG_LETRAS] = {0};
     int i, gano, intentos = INTENTOS_INI;
