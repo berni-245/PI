@@ -160,7 +160,18 @@ controlarCarton(TipoCarton carton, int bolilla){
 
 int
 buscarBolilla(TipoCarton carton, int bolilla){
-    
+    int i, j;
+
+    for(i=0; i<LINEAS; i++){
+        for(j=0; j<COLUM; j++){
+            if(carton[i][j] == bolilla){
+                carton[i][j] = 'X';
+                return 1;
+            }
+        }
+    }
+
+    return 0;
 }
 
 int
