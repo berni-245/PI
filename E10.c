@@ -39,7 +39,7 @@ main(){
             imprimirPalabra(palabra, marcas);
     }
     else{
-        for(i=0; palabra[i] == '\0'; i++){
+        for(i=0; palabra[i] != '\0'; i++){
             marcas[i] = 1;
         }
 
