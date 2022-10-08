@@ -165,7 +165,7 @@ buscarBolilla(TipoCarton carton, int bolilla){
     for(i=0; i<LINEAS; i++){
         for(j=0; j<COLUM; j++){
             if(carton[i][j] == bolilla){
-                carton[i][j] = 'X';
+                carton[i][j] = 0;
                 return 1;
             }
         }
