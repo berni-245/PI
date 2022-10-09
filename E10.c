@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include "../random.h"
 #define LONG_LETRAS 10
+#define CANT_PALABRAS 9
 #define INTENTOS_INI 6
 
 void selecPalabra(char candidatos[][LONG_LETRAS+1], char palabra[]);
@@ -52,13 +53,14 @@ main(){
 }
 
 void
-selecPalabra(char candidatos[][LONG_LETRAS+1], char palabra[]){
-    int i = randInt(0, LONG_LETRAS-1);
+selecPalabra(char candidatos[][LONG_LETRAS+1], char palabra[]){;
+    int i = randInt(0, CANT_PALABRAS-1);
     int j;
 
-    for(j=0; j<=LONG_LETRAS; j++){
+    for(j=0; candidatos[i][j]; j++){
         palabra[j] = candidatos[i][j];
     }
+    palabra[j] = '\0';
 
 }
 
