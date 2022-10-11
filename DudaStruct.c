@@ -33,11 +33,7 @@ int main(void){
   
   Point p1 = {5, 10};
   
-  Point p2 = 
-    { 
-      .y = 8, 
-      .x = 2
-    };
+  Point p2 = {.y = 8, .x = 2};
   
   p1 = p2;
   
