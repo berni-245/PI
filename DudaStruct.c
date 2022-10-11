@@ -5,11 +5,14 @@
 #include <string.h>
 #include <stdlib.h>
 
+//CASO 1
+
 typedef struct{
   int x;
   int y;
 } Point;
 
+//CASO 2
 
 typedef struct{
   char name[50];
@@ -17,6 +20,8 @@ typedef struct{
   int age;
   int grades[5];
 } Student;
+
+//CASO 3
 
 typedef struct{
   int *array;
