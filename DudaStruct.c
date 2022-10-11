@@ -55,8 +55,8 @@ int main(void){
   
   Duda:
 
-  En este caso el puntero dentro de p1 apuntará a dónde apunta el puntero de p2? De ser así, la memoria que reservé para p1
-  seguirá "perdida" en el heap? 
+  En este caso no se pasan "elemento por elemento", no? El puntero dentro de p1 apuntará a dónde apunta el puntero de p2?
+  De ser así, la memoria que reservé para p1 seguirá "perdida" en el heap? 
 
   */
 
