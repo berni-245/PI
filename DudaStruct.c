@@ -1,27 +1,12 @@
 //Duda sobre: asignación de dos estructuras
 //Pido perdón por los magic numbers
 
-#include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
-
-//CASO 1
 
 typedef struct{
   int x;
   int y;
 } Point;
-
-//CASO 2
-
-typedef struct{
-  char name[50];
-  char id[10];
-  int age;
-  int grades[5];
-} Student;
-
-//CASO 3
 
 typedef struct{
   int *array;
@@ -29,7 +14,7 @@ typedef struct{
 
 int main(void){
   
-  //CASO 1: Estructura sin arrays ni punteros (En este caso son ints)
+  //Estructura sin arrays ni punteros (En este caso son ints)
   
   Point p1 = {5, 10};
   
@@ -38,39 +23,11 @@ int main(void){
   p1 = p2;
   
   //Se copian los datos normalmente, miembro por miembro, del struct p2 al struct p1
+  //Nota: con arrays estáticos me funcionó también
   
   //--------------------------------------------------------------------------------------
-
-  //CASO 2: Estructura sin punteros pero con arrays
   
-  //Podés ignorar las declaraciones
-  Student kevin, john;
-  
-  strcpy(kevin.name, "Kevin");
-  strcpy(kevin.id, "000123123");
-  kevin.age = 40;
-  kevin.grades[0] = 1;
-  kevin.grades[1] = 2;
-  kevin.grades[2] = 3;
-  kevin.grades[3] = 4;
-  kevin.grades[4] = 5;
-  
-  strcpy(john.name, "John");
-  strcpy(john.id, "123123000");
-  john.age = 20;
-  john.grades[0] = 10;
-  john.grades[1] = 9;
-  john.grades[2] = 8;
-  john.grades[3] = 7;
-  john.grades[4] = 6;
-
-  kevin = john;
-  
-  //Se copian los datos normalmente, índice por índice de cada array, del struct john al struct kevin
-
-  //--------------------------------------------------------------------------------------
-  
-  //CASO 3: Estructura con punteros dinámicos
+  //Estructura con arrays dinámicos
 
   // Data p1 y Data p2 contienen un único puntero llamado array
   Data p1;
