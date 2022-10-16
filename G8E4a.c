@@ -27,7 +27,7 @@ typedef carta * jugador;
 void prepararMazo(cartas mazo);
 
 //toma el mazo actual y devuelve un vector de 5 cartas por jugador, y la nueva dimensión del mazo
-jugador * repartirCartas(cartas mazo, int * dim);
+jugador repartirCartas(cartas mazo, int * dim);
 
 //imprime la mano actual de un jugador
 void imprimirMano(jugador jugadorX);
