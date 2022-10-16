@@ -6,8 +6,10 @@
 #define CARTAS_MAZO 52
 #define CANT_FIGURAS 13
 #define CANT_PALOS 4
-#define CARTAS_JUEGO 5
+#define CARTAS_JUGADOR 5
 #define LETRAS_PALO 8
+
+//Acá declaré el enum por si le encontraba uso más adelante
 typedef enum posNumeros{AZ=1,DOS,TRES,CUATRO,CINCO,SEIS,SIETE,OCHO,NUEVE,DIEZ,J,Q,K} numeros;
 
 typedef struct{
@@ -15,14 +17,23 @@ typedef struct{
     char palo[LETRAS_PALO+1];  
 }carta;
 
+//cartas es un vector de varios struct carta
 typedef carta cartas[CARTAS_MAZO];
+
+//Acá utilicé un puntero porque no sé si debería contemplar los casos cuando reparto algo menor a 5 cartas
 typedef carta * jugador; 
 
+//genera y mezcla el mazo
 void prepararMazo(cartas mazo);
 
+//toma el mazo actual y devuelve un vector de 5 cartas por jugador, y la nueva dimensión del mazo
 jugador * repartirCartas(cartas mazo, int * dim);
-void checkearMano(jugador jugadorX);
+
+//imprime la mano actual de un jugador
 void imprimirMano(jugador jugadorX);
+
+//checkea si la mano actual de un jugador tiene algún PAR/PIERNA/POKER 
+void checkearMano(jugador jugadorX);
 
 int
 main(){
@@ -37,15 +48,15 @@ main(){
     for(i=0; i<CARTAS_MAZO; i++){
         printf("%d %s\n",mazo[i].numero,mazo[i].palo);
     }
-    /*
+    
     do{
         jugador1 = repartirCartas(mazo, &dim);
 
         imprimirMano(jugador1);
         checkearMano(jugador1);
 
-    }while(dim > 0);
-    */
+    }while(dim > 0); //o "dim >= CARTAS_JUGADOR" si sólo quisiera repartir de a 5
+    
     printf("FIN.\n");
 
 
