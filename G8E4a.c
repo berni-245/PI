@@ -48,7 +48,7 @@ main(){
         checkearMano(jugador1);
         sleep(2); //Para darle un mejor ritmo al juego
 
-    }while(dim >= CARTAS_JUGADOR);
+    }while(dim >= CARTAS_JUGADOR); //mientras se pueda repartir una mano a todos los jugadores, en este caso es sólo uno
     
     
     printf("FIN.\n");
