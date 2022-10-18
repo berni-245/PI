@@ -126,7 +126,7 @@ checkearMano(jugador jugadorX){
     }
 
     /*
-    para testear
+    para ver las marcas y el caso dónde hay poker (Es poco común)
 
     //marcas[0] = 4;
 
