@@ -2,32 +2,29 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../random.h"
+#include <unistd.h>
 
-#define CARTAS_MAZO 52
+
 #define CANT_FIGURAS 13
 #define CANT_PALOS 4
+#define CARTAS_MAZO CANT_FIGURAS*CANT_PALOS
 #define CARTAS_JUGADOR 5
-#define LETRAS_PALO 8
-
-//Acá declaré el enum por si le encontraba uso más adelante
-typedef enum posNumeros{AZ=1,DOS,TRES,CUATRO,CINCO,SEIS,SIETE,OCHO,NUEVE,DIEZ,J,Q,K} numeros;
 
 typedef struct{
-    int numero;
-    char palo[LETRAS_PALO+1];  
+    short numero, palo;  // numero de 0 a 12, palo de 0 a 3
 }carta;
 
 //cartas es un vector de varios struct carta
 typedef carta cartas[CARTAS_MAZO];
 
-//Acá utilicé un puntero porque no sé si debería contemplar los casos cuando reparto algo menor a 5 cartas
-typedef carta * jugador; 
+//Cantidad de cartas para cada jugador en cada mano
+typedef carta jugador[CARTAS_JUGADOR]; 
 
 //genera y mezcla el mazo
 void prepararMazo(cartas mazo);
 
 //toma el mazo actual y devuelve un vector de 5 cartas por jugador, y la nueva dimensión del mazo
-jugador repartirCartas(cartas mazo, int * dim);
+void repartirCartas(cartas mazo, int * dim, jugador jugadorX);
 
 //imprime la mano actual de un jugador
 void imprimirMano(jugador jugadorX);
@@ -44,18 +41,16 @@ main(){
     randomize();
     prepararMazo(mazo);
     
-    int i;
-    for(i=0; i<CARTAS_MAZO; i++){
-        printf("%d %s\n",mazo[i].numero,mazo[i].palo);
-    }
-    
+
     do{
-        jugador1 = repartirCartas(mazo, &dim);
+        repartirCartas(mazo, &dim, jugador1);
 
         imprimirMano(jugador1);
         checkearMano(jugador1);
+        sleep(2); //Para darle un mejor ritmo al juego
 
-    }while(dim > 0); //o "dim >= CARTAS_JUGADOR" si sólo quisiera repartir de a 5
+    }while(dim >= CARTAS_JUGADOR);
+    
     
     printf("FIN.\n");
 
@@ -65,33 +60,95 @@ main(){
 
 void
 prepararMazo(cartas mazo){
-    int i, j, aux;
-    short index[CARTAS_MAZO];
-    char * palos[] = {"corazon","trebol","pica","diamante"};
-    numeros numeroActual = AZ-1;
+    int i, j, aux1, aux2;
+    
+    //algoritmo válido solamente si CANT_FIGURAS Y CANT_PALOS son coprimos (al menos eso parece por testeos)
+    for(i=0; i<CARTAS_MAZO; i++){
+        mazo[i].numero = i%CANT_FIGURAS;
+        mazo[i].palo = i%CANT_PALOS;                
+    }  
+
 
     for(i=0; i<CARTAS_MAZO; i++){
-        index[i] = i;   //índices de 0 a 51
-    }
-
-    for(i=0; i<CARTAS_MAZO; i++){ //desordeno los índices
-        j = randInt(0,CARTAS_MAZO-1);
-        aux = index[i];
-        index[i] = index[j];
-        index[j] = aux;
-    }
-    
-    for(i=0; i<CARTAS_MAZO; i++,j++){
-        if(!(i%CANT_PALOS)){
-            numeroActual++;
-            j=0;
-        }
-        
-        //En lugar de asignarlos en orden ascendente, los asigno en el orden aleatorio de los índices que quedaron antes
-
-        mazo[index[i]].numero = numeroActual; 
-        strcpy(mazo[index[i]].palo, palos[j]);
-                
-    }       
+        j = randInt(0, CARTAS_MAZO-1);
+        aux1 = mazo[i].numero;
+        aux2 = mazo[i].palo;
+        mazo[i].numero = mazo[j].numero;
+        mazo[i].palo = mazo[j].palo;
+        mazo[j].numero = aux1;
+        mazo[j].palo = aux2;
+    }   
 }
 
+void
+repartirCartas(cartas mazo, int * dim, jugador jugadorX){
+    int i, j, newDim = *dim;
+
+    for(i=0; i<CARTAS_JUGADOR; i++){
+        j = randInt(0, newDim-1);
+
+        jugadorX[i].numero = mazo[j].numero;
+        jugadorX[i].palo = mazo[j].palo;
+
+        mazo[j].numero = mazo[newDim-1].numero;
+        mazo[j].palo = mazo[newDim-1].palo;
+
+        newDim--;
+    }
+
+    *dim = newDim;
+}
+
+void
+imprimirMano(jugador jugadorX){
+    char * numeros[] = {"2","3","4","5","6","7","8","9","10","J","Q","K","As"};
+    char * palos[] = {"Corazon","Trebor","Pica","Diamante"};
+
+    int i;
+    for(i=0; i<CARTAS_JUGADOR; i++){
+        printf("Numero:%s\t Palo:%s\n", numeros[jugadorX[i].numero], palos[jugadorX[i].palo]);
+    }
+    putchar('\n');
+}
+
+void
+checkearMano(jugador jugadorX){
+    int i, j, cantPar = 0, cantPierna = 0, cantPoker = 0;
+    short marcas[CARTAS_JUGADOR] = {1,1,1,1,1};//todos aparecen al menos una vez
+
+    for(i=0; i<CARTAS_JUGADOR; i++){
+        for(j=i+1; j<CARTAS_JUGADOR; j++){
+            if(jugadorX[j].numero != -1 && (jugadorX[i].numero == jugadorX[j].numero)){
+                marcas[i]++;
+                jugadorX[j].numero = -1; //para evitar marcar dos veces el mismo número
+                }
+        }
+        
+    }
+
+    /*
+    para testear
+
+    //marcas[0] = 4;
+
+    for(i=0; i<CARTAS_JUGADOR; i++){
+        printf("%d ", marcas[i]);
+    }
+    putchar('\n');
+    putchar('\n');
+    */
+
+
+    for(i = 0; i<CARTAS_JUGADOR; i++){
+        if(marcas[i] == 2)
+            cantPar++;
+        if(marcas[i] == 3)
+            cantPierna++;
+        if(marcas[i] == 4)
+            cantPoker++;
+    }
+
+    printf("El jugador hizo %d par, %d pierna, %d poker\n", cantPar, cantPierna, cantPoker);
+    putchar('\n');
+
+}
