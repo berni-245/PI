@@ -6,7 +6,7 @@
 
 #define CANT_FIGURAS 13
 #define CANT_PALOS 4
-#define CARTAS_MAZO CANT_FIGURAS*CANT_PALOS
+#define CARTAS_MAZO (CANT_FIGURAS*CANT_PALOS)
 #define CARTAS_JUGADOR 5
 
 typedef struct{
