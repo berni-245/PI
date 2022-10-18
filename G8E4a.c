@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include "../random.h"
 
-
 #define CANT_FIGURAS 13
 #define CANT_PALOS 4
 #define CARTAS_MAZO CANT_FIGURAS*CANT_PALOS
