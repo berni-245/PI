@@ -152,3 +152,10 @@ checkearMano(jugador jugadorX){
     putchar('\n');
 
 }
+
+/*
+Dudas:
+1) Está bien el algoritmo para generar el mazo? O debería contemplar que CANT_PALOS y CANT_FIGURAS no sean los típicos del mazo francés?
+2) Está bien la estructura general del programa? Me inquieta un poco que todas las funciones me retornaran void jaja
+3) La última función quedó medio "rara", hay alguna forma más eficiente de plantearla?
+*/
