@@ -19,10 +19,10 @@ typedef carta cartas[CARTAS_MAZO];
 //Cantidad de cartas para cada jugador en cada mano
 typedef carta jugador[CARTAS_JUGADOR]; 
 
-//genera y mezcla el mazo
+//genera el mazo
 void prepararMazo(cartas mazo);
 
-//toma el mazo actual y devuelve un vector de 5 cartas por jugador, y la nueva dimensión del mazo
+//toma el mazo actual y devuelve un vector de 5 cartas aleatorias por jugador, y la nueva dimensión del mazo
 void repartirCartas(cartas mazo, int * dim, jugador jugadorX);
 
 //imprime la mano actual de un jugador
@@ -46,9 +46,9 @@ main(){
 
         imprimirMano(jugador1);
         checkearMano(jugador1);
-        sleep(2); //Para darle un mejor ritmo al juego
+        sleep(2);
 
-    }while(dim >= CARTAS_JUGADOR); //mientras se pueda repartir una mano a todos los jugadores, en este caso es sólo uno
+    }while(dim >= CARTAS_JUGADOR);
     
     
     printf("FIN.\n");
@@ -59,24 +59,13 @@ main(){
 
 void
 prepararMazo(cartas mazo){
-    int i, j, aux1, aux2;
+    int i;
     
-    //algoritmo válido solamente si CANT_FIGURAS Y CANT_PALOS son coprimos (al menos eso parece por testeos)
-    for(i=0; i<CARTAS_MAZO; i++){
+    for( i = 0; i < CARTAS_MAZO; i++){
         mazo[i].numero = i%CANT_FIGURAS;
-        mazo[i].palo = i%CANT_PALOS;                
-    }  
+        mazo[i].palo = i/CANT_FIGURAS;    
+    }
 
-
-    for(i=0; i<CARTAS_MAZO; i++){
-        j = randInt(0, CARTAS_MAZO-1);
-        aux1 = mazo[i].numero;
-        aux2 = mazo[i].palo;
-        mazo[i].numero = mazo[j].numero;
-        mazo[i].palo = mazo[j].palo;
-        mazo[j].numero = aux1;
-        mazo[j].palo = aux2;
-    }   
 }
 
 void
@@ -124,20 +113,7 @@ checkearMano(jugador jugadorX){
         }
         
     }
-
-    /*
-    para ver las marcas y el caso dónde hay poker (Es poco común)
-
-    //marcas[0] = 4;
-
-    for(i=0; i<CARTAS_JUGADOR; i++){
-        printf("%d ", marcas[i]);
-    }
-    putchar('\n');
-    putchar('\n');
-    */
-
-
+     
     for(i = 0; i<CARTAS_JUGADOR; i++){
         if(marcas[i] == 2)
             cantPar++;
@@ -152,10 +128,3 @@ checkearMano(jugador jugadorX){
 
 }
 
-/*
-Dudas:
-1) Está bien el algoritmo para generar el mazo? O debería contemplar que CANT_PALOS y CANT_FIGURAS no sean los típicos del mazo francés? (4 palos y 13 figuras)
-2) Está bien la estructura general del programa? Me inquieta un poco que todas las funciones me retornaran void jaja
-3) La última función quedó medio "rara", hay alguna forma más eficiente de plantearla?
-PD: Puede correr el programa en mi compu si hace falta checkear algún caso
-*/
