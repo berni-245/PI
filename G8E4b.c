@@ -81,8 +81,6 @@ main(){
         if(input != '\n')
             continuar = false;
         }
-        
-        //no hace falta borrar el buffer pues no se puede ingresar el enter y luego algo más
 
     }while(continuar == true && dim >= CARTAS_JUGADOR*JUGADORES); //si no puedo repartir una mano completa a cadajugador -> fin
 
@@ -172,7 +170,7 @@ checkearMano(jugador jugadorX, jugador jugadorY){
         totalY = calcPeso(jugadorY, marcasY);
     }
     else{
-        if(configX[0] == 2 || configY[0] == 2){ //caso 2 pares en alguno de ellos (no puede ser ambos por el anterior if)
+        if(configX[0] == 2 || configY[0] == 2){ //caso 2 pares en sólo uno de ellos
                totalX = (configX[0] & 2) + configX[1]*2 + configX[2]*3; //creo que peso para que poker > pierna > 2par > par
                totalY = (configY[0] & 2) + configY[1]*2 + configY[2]*3;
         }
@@ -226,7 +224,6 @@ calcPeso(jugador jugadorX, short marcas[]){
     for(i=0; i<CARTAS_JUGADOR; i++){
         if(jugadorX[i].numero != -1) //si no está marcado cómo repetido
             total += marcas[i]*(jugadorX[i].numero + 2); 
-            //sumo para que el índice 0-8 sean sus correspondientes números (y para no multiplicar por 0 en el caso de que haber un DOS en la mano actual)
     }
     return total;
 }
