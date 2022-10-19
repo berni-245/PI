@@ -220,3 +220,5 @@ calcPeso(jugador jugadorX, short marcas[]){
     return total;
 }
 
+//evitar el uso de magic numbers, usar más define/enum de ser necesario
+//se podría usar un struct para la mano del jugador, sus marcas y configuraciones en lugar de hacerlo en varias variables
