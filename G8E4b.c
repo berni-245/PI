@@ -170,16 +170,8 @@ checkearMano(jugador jugadorX, jugador jugadorY){
         totalY = calcPeso(jugadorY, marcasY);
     }
     else{
-        if(configX[0] == 2 || configY[0] == 2){ //caso 2 pares en sólo uno de ellos
-               totalX = (configX[0] & 2) + configX[1]*2 + configX[2]*3; //creo que peso para que poker > pierna > 2par > par
-               totalY = (configY[0] & 2) + configY[1]*2 + configY[2]*3;
-        }
-        else{
-            for(i=0; i<CONFIG_ESPECIALES; i++){
-                totalX += (configX[i] * (i+1)); //creo un peso para que poker > pierna > par
-                totalY += (configY[i] * (i+1));
-            }
-        }
+        totalX = (configY[0] & 1) + (configX[0] & 2)*2 + configX[1]*3 + configX[2]*5; //creo un peso para que poker > pierna > 2par > par
+        totalY = (configY[0] & 1) + (configY[0] & 2)*2 + configY[1]*3 + configY[2]*5; 
     }
     
     ganador = (totalX >= totalY) + 2 * (totalY >= totalX); //1 bit= gana jug1, 2 bit= gana jug2, 3 bit= ganan ambos
