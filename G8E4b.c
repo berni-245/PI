@@ -170,7 +170,7 @@ checkearMano(jugador jugadorX, jugador jugadorY){
         totalY = calcPeso(jugadorY, marcasY);
     }
     else{
-        totalX = (configY[0] & 1) + (configX[0] & 2)*2 + configX[1]*3 + configX[2]*5; //creo un peso para que poker > pierna > 2par > par
+        totalX = (configY[0] & 1) + (configX[0] & 2)*2 + configX[1]*3 + configX[2]*5; //creo un peso para que poker > pierna+par > pierna > 2par > par
         totalY = (configY[0] & 1) + (configY[0] & 2)*2 + configY[1]*3 + configY[2]*5; 
     }
     
