@@ -222,3 +222,6 @@ calcPeso(jugador jugadorX, short marcas[]){
 
 //evitar el uso de magic numbers, usar más define/enum de ser necesario
 //se podría usar un struct para la mano del jugador, sus marcas y configuraciones en lugar de hacerlo en varias variables
+//Los 4 vectores auxiliares de chekearMano deberían ser de char, no de short
+//No está justificado el uso de bits en este caso 
+
