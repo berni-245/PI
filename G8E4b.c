@@ -130,8 +130,8 @@ repartirCartas(cartas mazo, int * dim, jugador jugadorX){
 
 void
 imprimirMano(jugador jugadorX){
-    char * numeros[] = {"2","3","4","5","6","7","8","9","10","J","Q","K","As"};
-    char * palos[] = {"Corazon","Trebor","Pica","Diamante"};
+    static char * numeros[] = {"2","3","4","5","6","7","8","9","10","J","Q","K","As"};
+    static char * palos[] = {"Corazon","Trebor","Pica","Diamante"};
 
     int i;
     for(i=0; i<CARTAS_JUGADOR; i++){
