@@ -97,3 +97,4 @@ transformarXY(Tdireccion direActual, int * dirx, int * diry){
 //cómo estoy repetiendo muchos parámetros en las funciones, tal vez conviene agruparlos en un struct
 //CREO que no podemos retornar la resp cómo posicion *, porque si llego a no tener que cambiar nada, no puedo no retornar algo
 //Por cada palabra en lugar de retornar todo el vector de struct, retorno sólo un struct para el vector de struct en el índice i
+//hay que pasar resp cómo parámetros
