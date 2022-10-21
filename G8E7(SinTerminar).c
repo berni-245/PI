@@ -41,7 +41,7 @@ resolverSopa(char sopa[FILS][COLUM], char * diccionario[]){
         resp = buscarPalabra(sopa, diccionario[i], &dimResp);
     }
 
-    realloc(resp, (dimResp+1)*sizeof(posicion));
+    resp = realloc(resp, (dimResp+1)*sizeof(posicion));
     resp[dimResp].palabra = NULL;
 
     return resp;
@@ -59,6 +59,8 @@ buscarPalabra(char sopa[FILS][COLUM], char palabra[], int * dimResp){
             }
         }
     }
+    
+    return resp;
 
 }
 
@@ -94,3 +96,4 @@ transformarXY(Tdireccion direActual, int * dirx, int * diry){
 
 //cómo estoy repetiendo muchos parámetros en las funciones, tal vez conviene agruparlos en un struct
 //CREO que no podemos retornar la resp cómo posicion *, porque si llego a no tener que cambiar nada, no puedo no retornar algo
+//Por cada palabra en lugar de retornar todo el vector de struct, retorno sólo un struct para el vector de struct en el índice i
