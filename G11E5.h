@@ -1,5 +1,5 @@
-#ifndef E5_H
-#define E5_H
+#ifndef E5_COMPLEX_H
+#define E5_COMPLEX_H
 
 typedef struct complexCDT * complexADT; //el tipo que manejará el usuario
 
