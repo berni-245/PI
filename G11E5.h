@@ -1,4 +1,5 @@
-
+#ifndef E5_H
+#define E5_H
 
 typedef struct complexCDT * complexADT; //el tipo que manejará el usuario
 
@@ -21,3 +22,5 @@ complexADT multComplex(complexADT numero1, complexADT numero2);
 complexADT divComplex(complexADT numero1, complexADT numero2);
 
 complexADT conjuComplex(complexADT numero);
+
+#endif
