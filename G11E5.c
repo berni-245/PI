@@ -72,7 +72,7 @@ divComplex(complexADT numero1, complexADT numero2){
     complexADT conjugadoNum2 = conjuComplex(numero2);
     complexADT respuesta = multComplex(numero1, conjugadoNum2);
 
-    double denominador = numero2->real * conjugadoNum2->real + numero2->imag * conjugadoNum2->imag;
+    double denominador = numero2->real * numero2->real + numero2->imag * numero2->imag;
     respuesta->real /= denominador;
     respuesta->imag /= denominador;
 
