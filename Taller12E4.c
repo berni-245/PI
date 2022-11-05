@@ -115,9 +115,9 @@ agregaPalabra(diccioADT dic, char * palabra, char * significado){
             dic->inicial[letra].lista = checkEspacio(dic->inicial[letra].lista, dim, &dic->inicial[letra].size); 
             //checkeo si tengo espacio
 
-            dic->inicial[letra].lista[dim].pal = malloc(sizeof(char)*(MAXWIDTH+1));
+            dic->inicial[letra].lista[dim].pal = malloc(sizeof(char)*(len1+1));
             dic->inicial[letra].lista[dim].pal = strcpy(dic->inicial[letra].lista[dim].pal, palabra);
-            dic->inicial[letra].lista[dim].sign = malloc(sizeof(char)*(MAXSIGNIFICADO+1));
+            dic->inicial[letra].lista[dim].sign = malloc(sizeof(char)*(len2+1));
             dic->inicial[letra].lista[dim].sign = strcpy(dic->inicial[letra].lista[dim].sign, significado);
 
             dic->inicial[letra].cant = ++dim;
@@ -152,7 +152,7 @@ void
 imprimeDiccionario(diccioADT dic){
     int i, j;
     for(i=0; i<LETRAS; i++){
-        for(j=0; j < dic->inicial[i].size; j++){
+        for(j=0; j < dic->inicial[i].cant; j++){
             printf("Palabra: %s\n", dic->inicial[i].lista[j].pal);
             printf("Significado: %s\n",dic->inicial[i].lista[j].sign);
         }
