@@ -1,0 +1,25 @@
+E4.out                                                                                                                              118ms  sáb 05 nov 2022 11:24:33
+Palabra: auto
+Significado: Aparato que se mueve
+Palabra: armario
+Significado: Mueble para guardar cosas
+Palabra: aceituna
+Significado: Fruto del olivo
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==7311==ERROR: AddressSanitizer: SEGV on unknown address (pc 0x7fc2ea7f5066 bp 0x7ffd30b94650 sp 0x7ffd30b93d98 T0)
+==7311==The signal is caused by a READ memory access.
+==7311==Hint: this fault was caused by a dereference of a high value address (see register values below).  Dissassemble the provided pc to learn which register was used.
+    #0 0x7fc2ea7f5066 in __sanitizer::internal_strlen(char const*) ../../../../src/libsanitizer/sanitizer_common/sanitizer_libc.cpp:167
+    #1 0x7fc2ea7862ed in printf_common ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_format.inc:551
+    #2 0x7fc2ea7866cc in __interceptor_vprintf ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors.inc:1660
+    #3 0x7fc2ea7867c6 in __interceptor_printf ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors.inc:1718
+    #4 0x5614040ee886 in imprimeDiccionario (/home/berni245/Escritorio/Programación Imperativa/Laboratorio/Taller/Taller 12/E4.out+0x2886)
+    #5 0x5614040ed652 in main (/home/berni245/Escritorio/Programación Imperativa/Laboratorio/Taller/Taller 12/E4.out+0x1652)
+    #6 0x7fc2ea529d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #7 0x7fc2ea529e3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #8 0x5614040ed2a4 in _start (/home/berni245/Escritorio/Programación Imperativa/Laboratorio/Taller/Taller 12/E4.out+0x12a4)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV ../../../../src/libsanitizer/sanitizer_common/sanitizer_libc.cpp:167 in __sanitizer::internal_strlen(char const*)
+==7311==ABORTING
