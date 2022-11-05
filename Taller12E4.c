@@ -42,7 +42,7 @@ void
 liberaDiccionario(diccioADT dic){
     int i, j;
     for(i=0; i<LETRAS; i++){
-        for(j=0; j < dic->inicial[i].size; j++){
+        for(j=0; j < dic->inicial[i].cant; j++){
             free(dic->inicial[i].lista[j].pal);
             free(dic->inicial[i].lista[j].sign);
         }
