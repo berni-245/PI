@@ -59,6 +59,7 @@ addPersonRec(node * personas, int * dim, const char * name){
         strcpy(aux->nombre, name);
         aux->dimAlegados = 0;
         aux->tail = personas;
+        aux->alegados = NULL;
         (*dim)++;
         
         return aux;
