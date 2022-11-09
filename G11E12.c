@@ -3,8 +3,6 @@
 #include <stdio.h>
 #include "E12.h"
 
-//reconozco que puedo guardar en una variable el resultado de strcmp para ahorrar llamados
-
 typedef struct node2{
     char nombre[LONG_PALABRAS+1];
     struct node2 * tail;
