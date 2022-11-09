@@ -1,0 +1,18 @@
+~/E/P/L/TP11  E12.out                                                                                                                          101ms  mié 09 nov 2022 09:00:29
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==5277==ERROR: AddressSanitizer: SEGV on unknown address (pc 0x7fa00a5413f8 bp 0x7fffb64b9bc0 sp 0x7fffb64b9340 T0)
+==5277==The signal is caused by a READ memory access.
+==5277==Hint: this fault was caused by a dereference of a high value address (see register values below).  Dissassemble the provided pc to learn which register was used.
+    #0 0x7fa00a5413f8 in __interceptor_strcmp ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors.inc:461
+    #1 0x5630a014f7f4 in addRelatedRec2 /home/berni245/Escritorio/Programación Imperativa/Laboratorio/TP11/E12.c:83
+    #2 0x5630a014f954 in addRelatedRec /home/berni245/Escritorio/Programación Imperativa/Laboratorio/TP11/E12.c:104
+    #3 0x5630a014fa5d in addRelated /home/berni245/Escritorio/Programación Imperativa/Laboratorio/TP11/E12.c:114
+    #4 0x5630a01501ff in main /home/berni245/Escritorio/Programación Imperativa/Laboratorio/TP11/E12main.c:24
+    #5 0x7fa00a2b0d8f in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #6 0x7fa00a2b0e3f in __libc_start_main_impl ../csu/libc-start.c:392
+    #7 0x5630a014f2e4 in _start (/home/berni245/Escritorio/Programación Imperativa/Laboratorio/TP11/E12.out+0x22e4)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors.inc:461 in __interceptor_strcmp
+==5277==ABORTING
