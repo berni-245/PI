@@ -48,6 +48,7 @@ void
 add(listADT list, elemType elem){
 
     node * inser = malloc(sizeof(*inser));
+    //Podría agregar los elementosde inser acá y su tail
 
     if(list->firstAsc == NULL){
         node * asc = malloc(sizeof(*asc));
