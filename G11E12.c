@@ -147,7 +147,8 @@ relatedRec2(node2 * alegados, char * resp[], int dim){
 
 }
 
-static char ** relatedRec(node * personas, const char * person){
+static char **
+relatedRec(node * personas, const char * person){
     if(personas == NULL || strcmp(personas->nombre, person) > 0){
         char ** aux  = malloc(sizeof(char *));
         aux[0] = NULL;
@@ -157,6 +158,7 @@ static char ** relatedRec(node * personas, const char * person){
     if(strcmp(personas->nombre, person) == 0){
         char ** resp = malloc((personas->dimAlegados+1)*sizeof(char *));
         relatedRec2(personas->alegados, resp, personas->dimAlegados);
+        return resp;
     }
 
     return relatedRec(personas->tail, person);
