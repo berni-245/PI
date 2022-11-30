@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "E12.h"
+#define LONG_PALABRAS 20
 
 typedef struct node2{
     char nombre[LONG_PALABRAS+1];
